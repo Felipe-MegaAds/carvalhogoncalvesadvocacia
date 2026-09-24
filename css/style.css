@@ -1,0 +1,1293 @@
+/* ==========================================================================
+   CARVALHO GONÇALVES ADVOCACIA E CONSULTORIA JURÍDICA
+   Arquivo de Estilos Principal (style.css)
+   Desenvolvido com Vanilla CSS limpo, modular e responsivo.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. VARIÁVEIS CSS (DESIGN TOKENS)
+   Centralização de cores, fontes, sombras e espaçamentos do projeto
+   -------------------------------------------------------------------------- */
+:root {
+  /* Paleta de Cores Principais */
+  --color-gold-primary: #cca650;
+  --color-gold-dark: #92732c;
+  --color-gold-hover: #e0ba65;
+  --color-gold-light: #f7eed7;
+
+  /* Gradientes Dourados e Corporativos */
+  --gradient-gold: linear-gradient(133deg, #cca650 0%, #92732c 100%);
+  --gradient-gold-hover: linear-gradient(133deg, #dbb662 0%, #a68434 100%);
+  --gradient-card: linear-gradient(272deg, #003e61 0%, #001d2d 100%);
+  --gradient-card-alt: linear-gradient(272deg, #003e61 0%, #00293d 100%);
+  --gradient-header: linear-gradient(180deg, #ffffff 0%, #dbdbdb 100%);
+
+  /* Tons de Azul Noturno e Profundo */
+  --color-blue-dark: #001d2d;
+  --color-blue-medium: #00293d;
+  --color-blue-accent: #003e61;
+
+  /* Tons Neutros e Textos */
+  --color-white: #ffffff;
+  --color-light-bg: #f7f7f7;
+  --color-light-blue: #e3f2ff;
+  --color-text-dark: #1b2c3b;
+  --color-text-muted: #54595f;
+  --color-text-white-dim: rgba(255, 255, 255, 0.85);
+
+  /* Tipografia do Sistema */
+  --font-body: "Montserrat", sans-serif;
+  --font-serif: "Crimson Text", Georgia, serif;
+
+  /* Efeitos e Sombras */
+  --shadow-sm: 0 2px 6px rgba(0, 0, 0, 0.08);
+  --shadow-md: 0 4px 14px rgba(0, 0, 0, 0.15);
+  --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.25);
+  --shadow-gold: 0 4px 15px rgba(204, 166, 80, 0.35);
+  --shadow-gold-hover: 0 6px 20px rgba(204, 166, 80, 0.5);
+
+  /* Transições Padrão */
+  --transition-fast: 0.2s ease;
+  --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 0.5s ease;
+
+  /* Layout */
+  --container-max-width: 1200px;
+  --header-height: 85px;
+  --border-radius-sm: 4px;
+  --border-radius-md: 8px;
+  --border-radius-lg: 12px;
+}
+
+/* --------------------------------------------------------------------------
+   2. RESET E ESTILOS GLOBAIS
+   Normalização e configuração de tipografia e caixa de modelo
+   -------------------------------------------------------------------------- */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--header-height);
+  font-size: 16px;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--color-text-dark);
+  background-color: var(--color-white);
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: color var(--transition-normal);
+}
+
+ul {
+  list-style: none;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: inherit;
+}
+
+/* Container centralizador de largura máxima */
+.container {
+  width: 100%;
+  max-width: var(--container-max-width);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+/* --------------------------------------------------------------------------
+   3. BOTÕES E COMPONENTES DE AÇÃO (CTA)
+   Estilização dos botões com gradiente dourado, ícones e estados de hover
+   -------------------------------------------------------------------------- */
+.btn-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background-image: var(--gradient-gold);
+  color: var(--color-white);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 14px 28px;
+  border-radius: var(--border-radius-sm);
+  box-shadow: var(--shadow-gold);
+  transition: all var(--transition-normal);
+  white-space: nowrap;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-cta::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.25) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: skewX(-20deg);
+  transition: left 0.75s ease;
+}
+
+.btn-cta:hover {
+  background-image: var(--gradient-gold-hover);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-gold-hover);
+}
+
+.btn-cta:hover::after {
+  left: 150%;
+}
+
+.btn-cta:active {
+  transform: translateY(0);
+}
+
+.btn-cta svg {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+  flex-shrink: 0;
+}
+
+/* Badge / Etiqueta de Seção */
+.section-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-gold-primary);
+  margin-bottom: 12px;
+}
+
+/* Título de Seção Padrão em Crimson Text */
+.section-title {
+  font-family: var(--font-serif);
+  font-size: 2.2rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  color: var(--color-blue-accent);
+  line-height: 1.15;
+  margin-bottom: 24px;
+}
+
+.section-title.light {
+  color: var(--color-white);
+}
+
+.text-center {
+  text-align: center;
+}
+
+/* --------------------------------------------------------------------------
+   4. CABEÇALHO / HEADER
+   Barra de navegação fixa com logo, links de menu e botão WhatsApp
+   -------------------------------------------------------------------------- */
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--header-height);
+  background-image: var(--gradient-header);
+  box-shadow: var(--shadow-sm);
+  z-index: 1000;
+  transition: background var(--transition-normal), box-shadow var(--transition-normal), height var(--transition-normal);
+}
+
+.site-header.scrolled {
+  background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.98) 0%, rgba(240, 240, 240, 0.98) 100%);
+  backdrop-filter: blur(10px);
+  box-shadow: var(--shadow-md);
+  height: 75px;
+}
+
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+}
+
+/* Logotipo do Escritório */
+.site-logo {
+  display: flex;
+  align-items: center;
+}
+
+.site-logo img {
+  height: 48px;
+  width: auto;
+  object-fit: contain;
+  transition: transform var(--transition-normal);
+}
+
+.site-logo:hover img {
+  transform: scale(1.02);
+}
+
+/* Menu de Navegação Desktop */
+.nav-menu {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.nav-link {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  color: var(--color-text-dark);
+  letter-spacing: 0.04em;
+  position: relative;
+  padding: 6px 0;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background-color: var(--color-gold-primary);
+  transition: width var(--transition-normal);
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: var(--color-gold-primary);
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  width: 100%;
+}
+
+/* Botão Hamburger (Mobile) */
+.mobile-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+.mobile-toggle span {
+  display: block;
+  width: 100%;
+  height: 3px;
+  background-color: var(--color-text-dark);
+  border-radius: 2px;
+  transition: all var(--transition-normal);
+}
+
+.mobile-toggle.active span:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.mobile-toggle.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.mobile-toggle.active span:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+/* --------------------------------------------------------------------------
+   5. SEÇÃO HERO / INÍCIO (#inicio)
+   Apresentação de grande impacto com a nova fotografia oficial do Dr. Samuel
+   e elementos da advocacia criminal (balança da justiça e insígnia)
+   -------------------------------------------------------------------------- */
+.hero-section {
+  position: relative;
+  min-height: 92vh;
+  display: flex;
+  align-items: center;
+  background-image: url("../assets/images/hero.png");
+  background-position: right center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding-top: calc(var(--header-height) + 60px);
+  padding-bottom: 80px;
+  color: var(--color-white);
+  overflow: hidden;
+}
+
+/* Overlay sutil e direcional: garante legibilidade total dos textos à esquerda
+   enquanto preserva o brilho e nitidez da fotografia do Dr. Samuel à direita */
+.hero-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    rgba(0, 29, 45, 0.92) 0%,
+    rgba(0, 29, 45, 0.78) 35%,
+    rgba(0, 29, 45, 0.35) 65%,
+    rgba(0, 29, 45, 0.05) 100%
+  );
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 780px;
+}
+
+.hero-title {
+  font-family: var(--font-body);
+  font-size: 2.75rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  line-height: 1.15;
+  color: var(--color-white);
+  margin-bottom: 24px;
+}
+
+.hero-title b,
+.hero-title strong {
+  font-weight: 700;
+  color: var(--color-gold-primary);
+  display: inline-block;
+}
+
+.hero-subtitle {
+  font-family: var(--font-body);
+  font-size: 1.25rem;
+  font-weight: 300;
+  line-height: 1.5;
+  color: var(--color-light-blue);
+  margin-bottom: 30px;
+  max-width: 650px;
+}
+
+/* Badge de Atendimento Presencial e Online */
+.hero-features {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 35px;
+}
+
+.hero-feature-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(0, 62, 97, 0.4);
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(204, 166, 80, 0.3);
+  padding: 8px 18px;
+  border-radius: 50px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--color-white);
+}
+
+.hero-feature-item svg {
+  width: 16px;
+  height: 16px;
+  fill: var(--color-gold-primary);
+  flex-shrink: 0;
+}
+
+/* --------------------------------------------------------------------------
+   6. SEÇÃO ESPECIALIDADES (#especialidades)
+   Grid com 9 áreas de atuação jurídica criminal
+   -------------------------------------------------------------------------- */
+.especialidades-section {
+  padding: 90px 0;
+  background-color: var(--color-white);
+}
+
+.especialidades-header {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto 50px auto;
+}
+
+/* Grade de especialidades estruturada em 3 colunas e alinhamento uniforme */
+.especialidades-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+  margin-bottom: 50px;
+  align-items: stretch;
+}
+
+/* Cards das Áreas de Atuação com gradiente corporativo, bordas sutis e flexbox */
+.especialidade-card {
+  background-image: var(--gradient-card);
+  padding: 32px 28px;
+  border-radius: var(--border-radius-md);
+  color: var(--color-white);
+  box-shadow: var(--shadow-md);
+  border: 1px solid rgba(204, 166, 80, 0.15);
+  transition: all var(--transition-normal);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  height: 100%;
+}
+
+/* Efeito de elevação suave e realce dourado ao passar o mouse */
+.especialidade-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+  border-color: rgba(204, 166, 80, 0.45);
+}
+
+/* Moldura circular suave com fundo translúcido para o ícone da especialidade */
+.especialidade-icon {
+  margin-bottom: 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: rgba(204, 166, 80, 0.12);
+  border: 1px solid rgba(204, 166, 80, 0.3);
+  transition: all var(--transition-normal);
+  flex-shrink: 0;
+}
+
+/* Micro-interação de escala no ícone da especialidade ao hover do card */
+.especialidade-card:hover .especialidade-icon {
+  background: rgba(204, 166, 80, 0.25);
+  border-color: var(--color-gold-primary);
+  transform: scale(1.08);
+}
+
+/* Dimensões e renderização nítida dos ícones vetoriais SVG com traço dourado */
+.especialidade-icon svg {
+  width: 26px;
+  height: 26px;
+  stroke: var(--color-gold-primary);
+  display: block;
+}
+
+.especialidade-title {
+  font-family: var(--font-serif);
+  font-size: 1.4rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  color: var(--color-white);
+  line-height: 1.25;
+  margin-bottom: 14px;
+}
+
+.especialidade-description {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 300;
+  color: var(--color-text-white-dim);
+  line-height: 1.55;
+  margin-top: auto;
+}
+
+.especialidades-cta {
+  text-align: center;
+  margin-top: 10px;
+}
+
+/* --------------------------------------------------------------------------
+   7. SEÇÃO SOBRE O ADVOGADO (#sobre)
+   Perfil profissional do Dr. Herlon Samuel Carvalho, foto e credenciais OAB
+   -------------------------------------------------------------------------- */
+.sobre-section {
+  padding: 90px 0;
+  background-color: var(--color-blue-dark);
+  color: var(--color-white);
+  position: relative;
+  overflow: hidden;
+}
+
+.sobre-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.25fr;
+  gap: 50px;
+  align-items: center;
+}
+
+/* Coluna de Imagem com Moldura Dourada */
+.sobre-image-wrapper {
+  position: relative;
+  border-radius: var(--border-radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  border: 2px solid rgba(204, 166, 80, 0.3);
+}
+
+.sobre-image-wrapper::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 35%;
+  background: linear-gradient(180deg, transparent 0%, rgba(0, 29, 45, 0.8) 100%);
+  pointer-events: none;
+}
+
+.sobre-image {
+  width: 100%;
+  height: 100%;
+  max-height: 600px;
+  object-fit: cover;
+  object-position: top center;
+  transition: transform var(--transition-slow);
+}
+
+.sobre-image-wrapper:hover .sobre-image {
+  transform: scale(1.03);
+}
+
+/* Coluna de Texto Institucional */
+.sobre-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.sobre-divider {
+  width: 90px;
+  height: 3px;
+  background-color: var(--color-gold-primary);
+  margin-top: 12px;
+  margin-bottom: 24px;
+}
+
+.sobre-text p {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 300;
+  color: var(--color-text-white-dim);
+  line-height: 1.7;
+  margin-bottom: 18px;
+  text-align: justify;
+}
+
+.sobre-oab {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 12px;
+  background: rgba(204, 166, 80, 0.1);
+  border: 1px solid var(--color-gold-primary);
+  padding: 10px 20px;
+  border-radius: var(--border-radius-sm);
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--color-white);
+  width: fit-content;
+}
+
+.sobre-oab svg {
+  width: 20px;
+  height: 20px;
+  fill: var(--color-gold-primary);
+  flex-shrink: 0;
+}
+
+/* --------------------------------------------------------------------------
+   8. SEÇÃO MEUS DIFERENCIAIS
+   Cards com diferenciais estratégicos e ícones dourados elaborados
+   -------------------------------------------------------------------------- */
+.diferenciais-section {
+  position: relative;
+  padding: 90px 0;
+  background-color: var(--color-blue-dark);
+  background-image: url("../assets/images/diferenciais-bg.jpg");
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: var(--color-white);
+  overflow: hidden;
+}
+
+.diferenciais-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 29, 45, 0.92);
+  z-index: 1;
+}
+
+.diferenciais-container {
+  position: relative;
+  z-index: 2;
+}
+
+.diferenciais-header {
+  text-align: center;
+  max-width: 650px;
+  margin: 0 auto 50px auto;
+}
+
+/* Grade de diferenciais com cards de alturas iguais e espaçamento proporcional */
+.diferenciais-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  margin-bottom: 50px;
+  align-items: stretch;
+}
+
+/* Card individual de diferencial com fundo gradiente, borda sutil e alinhamento flex */
+.diferencial-card {
+  background-image: var(--gradient-card-alt);
+  padding: 36px 30px;
+  border-radius: var(--border-radius-md);
+  border: 1px solid rgba(204, 166, 80, 0.2);
+  box-shadow: var(--shadow-md);
+  transition: all var(--transition-normal);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  height: 100%;
+}
+
+/* Efeito de hover nos cards com elevação e brilho dourado */
+.diferencial-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--color-gold-primary);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35), 0 0 15px rgba(204, 166, 80, 0.15);
+}
+
+/* Ícone circular em formato de medalha dourada */
+.diferencial-icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: rgba(204, 166, 80, 0.12);
+  border: 1px solid rgba(204, 166, 80, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 22px;
+  flex-shrink: 0;
+  transition: all var(--transition-normal);
+}
+
+/* Efeito no ícone ao passar o mouse sobre o card */
+.diferencial-card:hover .diferencial-icon {
+  background: rgba(204, 166, 80, 0.24);
+  border-color: var(--color-gold-primary);
+  transform: scale(1.08);
+  box-shadow: 0 4px 14px rgba(204, 166, 80, 0.3);
+}
+
+/* Dimensão e renderização precisa do vetor SVG */
+.diferencial-icon svg {
+  width: 28px;
+  height: 28px;
+  stroke: var(--color-gold-primary);
+  display: block;
+}
+
+/* Título em destaque com tipografia equilibrada */
+.diferencial-title {
+  font-family: var(--font-body);
+  font-size: 1.15rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--color-white);
+  margin-bottom: 14px;
+  line-height: 1.35;
+  letter-spacing: 0.02em;
+}
+
+/* Descrição com excelente contraste e legibilidade */
+.diferencial-description {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.65;
+  margin-top: 0;
+}
+
+/* Chamada para ação da seção de diferenciais */
+.diferenciais-cta {
+  text-align: center;
+}
+
+/* --------------------------------------------------------------------------
+   9. SEÇÃO ESCRITÓRIO E ATENDIMENTO
+   Apresentação física do escritório e convite para visita
+   -------------------------------------------------------------------------- */
+.escritorio-section {
+  padding: 70px 0;
+  background-color: var(--color-blue-dark);
+  color: var(--color-white);
+  border-top: 1px solid rgba(204, 166, 80, 0.15);
+}
+
+.escritorio-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 30px;
+  align-items: center;
+}
+
+.escritorio-info-box {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.escritorio-info-title {
+  font-family: var(--font-serif);
+  font-size: 1.35rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  color: var(--color-gold-primary);
+  line-height: 1.2;
+}
+
+.escritorio-info-text {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--color-white);
+}
+
+.escritorio-contact-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 6px;
+}
+
+.escritorio-contact-item svg {
+  width: 22px;
+  height: 22px;
+  fill: var(--color-gold-primary);
+  flex-shrink: 0;
+}
+
+.escritorio-contact-item a {
+  font-family: var(--font-body);
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--color-white);
+  transition: color var(--transition-fast);
+}
+
+.escritorio-contact-item a:hover {
+  color: var(--color-gold-primary);
+}
+
+/* Container limpo para o logotipo na seção de atendimento, sem bordas nem moldura */
+.escritorio-logo-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 0;
+  border: none;
+  background: transparent;
+  box-shadow: none;
+}
+
+/* Logotipo com efeito para ficar na cor branca, proporcionando máximo contraste no fundo escuro */
+.escritorio-logo-wrapper img {
+  width: auto;
+  max-width: 100%;
+  max-height: 160px;
+  object-fit: contain;
+  /* Filtro CSS para transformar a logo em branco com alto contraste sobre o fundo escuro */
+  filter: brightness(0) invert(1);
+  transition: transform var(--transition-normal), filter var(--transition-normal);
+}
+
+/* Efeito suave de escala e leve brilho ao passar o cursor */
+.escritorio-logo-wrapper:hover img {
+  transform: scale(1.04);
+  filter: brightness(0) invert(1) drop-shadow(0 2px 12px rgba(255, 255, 255, 0.25));
+}
+
+/* --------------------------------------------------------------------------
+   10. SEÇÃO CONTATO E LOCALIZAÇÃO (#contato)
+   Grid com dados de contato, horários, redes sociais e Google Maps integrado
+   -------------------------------------------------------------------------- */
+.contato-section {
+  padding: 85px 0;
+  background-color: var(--color-white);
+}
+
+.contato-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-radius: var(--border-radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  border: 1px solid #e5e5e5;
+}
+
+/* Coluna de Informações de Contato */
+.contato-info-col {
+  background-color: var(--color-light-bg);
+  padding: 45px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.contato-bloco-title {
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  color: var(--color-gold-primary);
+  margin-bottom: 14px;
+}
+
+.contato-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.contato-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 0.95rem;
+  color: var(--color-blue-dark);
+}
+
+.contato-item svg {
+  width: 18px;
+  height: 18px;
+  fill: var(--color-gold-primary);
+  flex-shrink: 0;
+  margin-top: 3px;
+}
+
+.contato-item a {
+  color: var(--color-blue-dark);
+  font-weight: 500;
+}
+
+.contato-item a:hover {
+  color: var(--color-gold-primary);
+}
+
+/* Redes Sociais com Círculos Dourados */
+.contato-redes {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.rede-social-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background-color: var(--color-gold-primary);
+  color: var(--color-white);
+  transition: all var(--transition-normal);
+}
+
+.rede-social-btn svg {
+  width: 17px;
+  height: 17px;
+  fill: var(--color-white);
+}
+
+.rede-social-btn:hover {
+  background-color: var(--color-gold-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Coluna do Mapa Google Maps */
+.contato-mapa-col {
+  background-color: var(--color-blue-accent);
+  position: relative;
+  min-height: 420px;
+}
+
+.contato-mapa-col iframe {
+  width: 100%;
+  height: 100%;
+  min-height: 420px;
+  border: none;
+  display: block;
+}
+
+/* --------------------------------------------------------------------------
+   11. RODAPÉ / FOOTER
+   Direitos autorais, conformidade legal OAB e créditos de desenvolvimento
+   -------------------------------------------------------------------------- */
+.site-footer {
+  background-color: var(--color-blue-dark);
+  color: var(--color-white);
+  padding: 40px 0 25px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  font-size: 0.85rem;
+}
+
+.footer-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+.footer-legal {
+  max-width: 780px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.footer-copyright {
+  font-weight: 500;
+  color: var(--color-white);
+}
+
+.footer-disclaimer {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.78rem;
+  line-height: 1.45;
+}
+
+.footer-creditos {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.footer-creditos-label {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.7);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.footer-creditos-logo {
+  display: block;
+  transition: opacity var(--transition-normal);
+}
+
+.footer-creditos-logo:hover {
+  opacity: 0.85;
+}
+
+.footer-creditos-logo img {
+  height: 38px;
+  width: auto;
+}
+
+/* --------------------------------------------------------------------------
+   12. BOTÃO FLUTUANTE DE WHATSAPP
+   Elemento fixo no canto inferior direito para conversão contínua
+   -------------------------------------------------------------------------- */
+.whatsapp-floating {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  background-color: #25d366;
+  border-radius: 50%;
+  box-shadow: 0 4px 16px rgba(37, 211, 102, 0.4);
+  transition: all var(--transition-normal);
+  animation: pulse-whatsapp 2s infinite;
+}
+
+.whatsapp-floating:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 22px rgba(37, 211, 102, 0.6);
+}
+
+.whatsapp-floating svg {
+  width: 32px;
+  height: 32px;
+  fill: var(--color-white);
+}
+
+/* Tooltip do WhatsApp Flutuante */
+.whatsapp-floating .whatsapp-tooltip {
+  position: absolute;
+  right: 72px;
+  background-color: var(--color-blue-dark);
+  color: var(--color-white);
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.82rem;
+  font-weight: 500;
+  white-space: nowrap;
+  box-shadow: var(--shadow-md);
+  opacity: 0;
+  visibility: hidden;
+  transition: all var(--transition-fast);
+  pointer-events: none;
+}
+
+.whatsapp-floating:hover .whatsapp-tooltip {
+  opacity: 1;
+  visibility: visible;
+  right: 76px;
+}
+
+@keyframes pulse-whatsapp {
+  0% {
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.6);
+  }
+  70% {
+    box-shadow: 0 0 0 16px rgba(37, 211, 102, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   13. ANIMAÇÕES DE ENTRADA AO ROLAR (SCROLL REVEAL)
+   Classes aplicadas via IntersectionObserver no JavaScript
+   -------------------------------------------------------------------------- */
+.reveal-item {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.6s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.reveal-item.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* --------------------------------------------------------------------------
+   14. RESPONSIVIDADE E BREAKPOINTS (MEDIA QUERIES)
+   Adaptação completa para Telas Médias, Tablets e Celulares
+   -------------------------------------------------------------------------- */
+
+/* Telas de Tablets e Telas Médias (<= 1024px) */
+@media (max-width: 1024px) {
+  .especialidades-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .diferenciais-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .escritorio-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+  }
+
+  .escritorio-foto-wrapper {
+    grid-column: span 2;
+    max-height: 280px;
+  }
+
+  .sobre-grid {
+    gap: 35px;
+  }
+}
+
+/* Telas de Tablets Pequenos e Celulares Grandes (<= 768px) */
+@media (max-width: 768px) {
+  :root {
+    --header-height: 75px;
+  }
+
+  .mobile-toggle {
+    display: flex;
+  }
+
+  /* Menu de Navegação Gaveta no Mobile */
+  .nav-menu {
+    position: fixed;
+    top: var(--header-height);
+    left: 0;
+    width: 100%;
+    background-color: var(--color-white);
+    flex-direction: column;
+    align-items: center;
+    padding: 30px 20px;
+    gap: 20px;
+    box-shadow: var(--shadow-lg);
+    border-top: 1px solid #ebebeb;
+    transform: translateY(-150%);
+    opacity: 0;
+    visibility: hidden;
+    transition: all var(--transition-normal);
+  }
+
+  .nav-menu.active {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .header-cta-desktop {
+    display: none;
+  }
+
+  .hero-title {
+    font-size: 2.1rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1.05rem;
+  }
+
+  /* Ajuste de posicionamento e contraste da imagem Hero para dispositivos móveis */
+  .hero-section {
+    background-position: 75% center;
+    min-height: auto;
+    padding-top: calc(var(--header-height) + 40px);
+    padding-bottom: 60px;
+  }
+
+  /* Overlay reforçado no mobile para preservar a legibilidade do texto e dos botões */
+  .hero-section::before {
+    background: linear-gradient(
+      180deg,
+      rgba(0, 29, 45, 0.9) 0%,
+      rgba(0, 29, 45, 0.78) 50%,
+      rgba(0, 29, 45, 0.92) 100%
+    );
+  }
+
+  .especialidades-grid,
+  .diferenciais-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .sobre-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .sobre-image-wrapper {
+    max-width: 450px;
+    margin: 0 auto;
+  }
+
+  .escritorio-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .escritorio-foto-wrapper {
+    grid-column: span 1;
+  }
+
+  .contato-wrapper {
+    grid-template-columns: 1fr;
+  }
+
+  .contato-mapa-col {
+    min-height: 320px;
+  }
+
+  .footer-container {
+    flex-direction: column;
+    text-align: center;
+    gap: 20px;
+  }
+
+  .footer-creditos {
+    align-items: center;
+  }
+}
+
+/* Celulares Menores (<= 480px) */
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: 1.75rem;
+  }
+
+  .section-title {
+    font-size: 1.75rem;
+  }
+
+  .btn-cta {
+    width: 100%;
+    padding: 13px 20px;
+    font-size: 0.9rem;
+  }
+
+  .hero-feature-item {
+    font-size: 0.85rem;
+    padding: 6px 14px;
+  }
+
+  .contato-info-col {
+    padding: 30px 20px;
+  }
+
+  .whatsapp-floating {
+    bottom: 20px;
+    right: 20px;
+    width: 52px;
+    height: 52px;
+  }
+
+  .whatsapp-floating svg {
+    width: 28px;
+    height: 28px;
+  }
+}

@@ -1,0 +1,12 @@
+# Arquivos gerados pelo sistema operacional Windows e macOS
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+.DS_Store
+
+# Configurações locais de IDEs e editores de código (VS Code, JetBrains, etc.)
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace

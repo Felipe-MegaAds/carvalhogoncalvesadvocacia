@@ -565,23 +565,18 @@ button {
   border: 2px solid rgba(204, 166, 80, 0.3);
 }
 
+/* Desativa o gradiente inferior para manter visível todo o conteúdo da imagem, incluindo o logotipo */
 .sobre-image-wrapper::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 35%;
-  background: linear-gradient(180deg, transparent 0%, rgba(0, 29, 45, 0.8) 100%);
-  pointer-events: none;
+  display: none;
 }
 
+/* Define a imagem da seção sobre em seu tamanho completo proporcional, sem cortes ou altura máxima restritiva */
 .sobre-image {
   width: 100%;
-  height: 100%;
-  max-height: 600px;
-  object-fit: cover;
-  object-position: top center;
+  height: auto;
+  max-height: none;
+  object-fit: contain;
+  display: block;
   transition: transform var(--transition-slow);
 }
 
@@ -998,6 +993,44 @@ button {
 .footer-copyright {
   font-weight: 500;
   color: var(--color-white);
+}
+
+/* Estilização do link de acompanhamento no Instagram do Advogado no Rodapé */
+.footer-instagram-wrapper {
+  margin: 2px 0;
+}
+
+.footer-instagram-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--color-gold-primary);
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all var(--transition-normal);
+}
+
+.footer-instagram-link:hover {
+  color: var(--color-white);
+  transform: translateX(3px);
+}
+
+.footer-instagram-link svg {
+  width: 17px;
+  height: 17px;
+  fill: currentColor;
+  flex-shrink: 0;
+}
+
+.footer-instagram-link strong {
+  color: var(--color-white);
+  font-weight: 600;
+  transition: color var(--transition-normal);
+}
+
+.footer-instagram-link:hover strong {
+  color: var(--color-gold-primary);
 }
 
 .footer-disclaimer {

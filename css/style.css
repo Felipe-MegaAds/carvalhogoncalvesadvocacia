@@ -53,8 +53,8 @@
 
   /* Layout */
   --container-max-width: 1200px;
-  /* Altura padrão do cabeçalho expandida para acomodar com harmonia o logotipo de maior porte */
-  --header-height: 92px;
+  /* Altura padrão do cabeçalho expandida para acomodar com harmonia e elegância o logotipo de tamanho ampliado */
+  --header-height: 104px;
   --border-radius-sm: 4px;
   --border-radius-md: 8px;
   --border-radius-lg: 12px;
@@ -238,7 +238,8 @@ button {
   background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.98) 0%, rgba(240, 240, 240, 0.98) 100%);
   backdrop-filter: blur(10px);
   box-shadow: var(--shadow-md);
-  height: 75px;
+  /* Altura do cabeçalho compacto ao rolar a página ajustada para manter a visibilidade da marca */
+  height: 82px;
 }
 
 .header-container {
@@ -254,9 +255,9 @@ button {
   align-items: center;
 }
 
-/* Imagem da logo com tamanho ampliado para máxima nitidez e destaque da marca no cabeçalho */
+/* Imagem da logo com tamanho ampliado para máxima nitidez, imponência e destaque da marca no cabeçalho */
 .site-logo img {
-  height: 68px;
+  height: 84px;
   width: auto;
   object-fit: contain;
   transition: transform var(--transition-normal), height var(--transition-normal);
@@ -266,9 +267,9 @@ button {
   transform: scale(1.02);
 }
 
-/* Redução suave da logo ao rolar a página para manter a ergonomia do cabeçalho compacto */
+/* Redução suave da logo ao rolar a página para manter a ergonomia e leveza do cabeçalho fixo */
 .site-header.scrolled .site-logo img {
-  height: 56px;
+  height: 66px;
 }
 
 /* Menu de Navegação Desktop */
@@ -1191,18 +1192,18 @@ button {
 /* Telas de Tablets Pequenos e Celulares Grandes (<= 768px) */
 @media (max-width: 768px) {
   :root {
-    /* Altura do cabeçalho em dispositivos móveis ajustada para a nova escala da logo */
-    --header-height: 80px;
+    /* Altura do cabeçalho em dispositivos móveis ajustada para a escala ampliada da logo */
+    --header-height: 88px;
   }
 
-  /* Ajuste responsivo da logo no cabeçalho mobile */
+  /* Ajuste responsivo com tamanho ampliado da logo no cabeçalho mobile */
   .site-logo img {
-    height: 58px;
+    height: 70px;
   }
 
-  /* Encolhimento proporcional da logo mobile ao rolar a tela */
+  /* Encolhimento proporcional da logo mobile ao rolar a tela mantendo boa legibilidade */
   .site-header.scrolled .site-logo img {
-    height: 50px;
+    height: 58px;
   }
 
   .mobile-toggle {
@@ -1340,5 +1341,15 @@ button {
   .whatsapp-floating svg {
     width: 28px;
     height: 28px;
+  }
+
+  /* Ajuste refinado da logo para celulares de tela reduzida mantendo respiro e proporção */
+  .site-logo img {
+    height: 64px;
+  }
+
+  /* Altura da logo mobile reduzida suavemente ao rolar em telas pequenas */
+  .site-header.scrolled .site-logo img {
+    height: 52px;
   }
 }
